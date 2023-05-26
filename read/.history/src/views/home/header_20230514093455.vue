@@ -1,0 +1,118 @@
+
+<template>
+
+  <header>
+    <el-dialog
+      title="个人中新"
+      :close-on-click-modal="false"
+      :visible.sync="visible"
+    >
+      
+        
+    </el-dialog>
+    <el-menu
+      class="el-menu"
+      mode="horizontal"
+      @select="handleSelect"
+      background-color="#373737"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+    >
+     
+      <el-menu-item index="1" class="el-icon-headset">Reader</el-menu-item>
+      <el-menu-item class="select" style="width: 400px">
+        <el-button
+          icon="el-icon-search"
+          type="text"
+          style="margin-right: 10px"
+          @click="search"
+          class="button"
+        >
+        </el-button>
+        <el-input
+          class="input"
+         
+          style="width: 200px; margin-right: 10px"
+          clearable
+          @clear="search"
+          @keydown.enter.native="search"
+        ></el-input>
+      </el-menu-item>
+      <el-menu-item>
+        <!-- 主题选择器 -->
+        <el-switch v-model="select" active-text="按月付费"> </el-switch>
+      </el-menu-item>
+     
+      <el-menu-item>
+        <!-- 头像 -->
+        <el-avatar> user </el-avatar>
+      </el-menu-item>
+      <el-submenu index="2" class="submenu">
+      <!-- <template slot="title">{{user.userRealName}}</template> -->
+      <template slot="title">用户中心</template>
+      <el-menu-item @click="content()" index="2-2">个人中心</el-menu-item>
+      <el-menu-item @click="exit()" index="2-3">退出</el-menu-item>
+    </el-submenu>
+    </el-menu>
+  </header>
+</template>
+
+<script>
+import Header from "@/components/Header.vue";
+import languagesVue from "./nav/languages.vue";
+import usercenterVue from '@/components/usercenter.vue'
+
+export default {
+  components: {
+    languagesVue,
+    usercenterVue,
+  },
+
+  data() {
+    return {
+      visible:false,
+      select: true,
+     
+    };
+  },
+  methods: {
+    // 搜索框绑定事件
+    search() {},
+   
+    //国际化切换语言
+    handleSelect() {},
+    content(){
+      this.visible=true;
+    }
+  },
+};
+</script>
+
+<style>
+.el-menu.el-menu--horizontal {
+    border-bottom: solid 0px #e6e6e6;
+}
+.el-header {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.el-menu-item{
+  padding-left: 0px;
+  padding-right: 20px;
+}
+.el-icon-headset{
+  padding-left: 90px;
+}
+.select {
+  display: flex;
+}
+.button {
+  margin-right: auto;
+  background-color: #373737;
+  width: 30px;
+}
+.el-input__inner {
+  background-color: #373737;
+  border: 1px #802c2c;
+}
+</style>
